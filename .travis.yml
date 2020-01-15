@@ -2,10 +2,8 @@ language: java
 jdk:
 - openjdk8
 script: mvn clean verify
-
 deploy:
-  provider: heroku
   api_key:
-    secure: 43882dbc-c956-43e6-94de-e7a963ff37e3
-    app: first-app-cl5616
+    secure: lXSagGieaCWs2qdac1wx1OokpzHL4D6WO2Pzn+wXNdC/kYYUO3lBI7z0Jey1FJvjkshSlvhxCRraNs1MI5l93ddvY3mfhJuolYMAeieJX3OmbN9CEjK/2/7K17OhtPIlOjxFGGvM+t+Nmpyri04vmcCW5fI0JbWcQ4RzKiW8T+tk2mkO5vxrno5FzdPON/3n0M3RMCuRoaHOHNbAK5CjlUzI4N4EG437tPA43h5eVfYBidfLgcCzmWOmZPXprwobweksILo50AZeH9c6YS2k5ryN7kq1pLQavPAxorS84Z4jqQNrmJuyxenQIMN5tKvI4KHfZTJuVBuSSXcT/2sTxerBJbFxAr23ehI3GvS/b5RSzBD3shtRWAx12/SWhCAHQm0rePrw/RmhHhYQ2G4ELMT51+yM12yzhX/fEA4ZrJLpQAGsBVW4s7aFN9OQHxMiQSqfmQiMyx3QjTIXpqFtwZ3qDvRzM825b3iZUBnO9DoxVC5KVu/HBkpYUzH9CpdX4y1WfGf5RQpNCvyDjlF+0mADXMB2dOYBpMC6A0se3pCAk0r3u2+XCxBLqpDfU2JUlCv54Un72JLV26wpoircYnLbZZxcHfg0ueyVajMw4sXvlfEqxBg5v07TuTohD5n85XjVvjnxdPPQ90oW3s/1trm8qezmrkNk61SJWBrQtdo=
+  app: first-app-cl5616
 
