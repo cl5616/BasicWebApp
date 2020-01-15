@@ -27,6 +27,6 @@ public class QueryProcessorTest {
 
     @Test
     public void appleTest() throws Exception {
-        assertThat(queryProcessor.process("apple"), containsString("apple"));
+        assertThat(queryProcessor.process("apple"), containsString("apppppple"));
     }
 }
