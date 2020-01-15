@@ -2,3 +2,8 @@ language: java
 jdk:
 - openjdk8
 script: mvn clean verify
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "43882dbc-c956-43e6-94de-e7a963ff37e3"
