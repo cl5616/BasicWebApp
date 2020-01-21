@@ -19,6 +19,17 @@ public class QueryProcessor {
         }
     }
 
+    private boolean isPrime(int number) {
+        int sqrt = (int) Math.sqrt(number) + 1;
+        for (int i = 2; i < sqrt; i++) {
+            if (number % i == 0) {
+                // number is perfectly divisible - no prime
+                return false;
+            }
+        }
+        return true;
+    }
+
     public String process(String query) {
         if (query.toLowerCase().contains("shakespeare")) {
             return "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
@@ -57,6 +68,26 @@ public class QueryProcessor {
                 Integer idx = Integer.parseInt(matcher.group(0));
                 return fib.get(idx - 1).toString();
             }
+        }
+        else if (query.toLowerCase().contains("prime")) {
+
+            List<String> allMatches = new ArrayList<String>();
+
+            Pattern pattern = Pattern.compile("(\\d+)");
+            Matcher matcher = pattern.matcher(query);
+            while (matcher.find()) {
+                allMatches.add(matcher.group());
+            }
+
+            List<String> primes = new ArrayList<String>();
+
+            for (String s: allMatches) {
+                if (isPrime(Integer.parseInt(s))) {
+                    primes.add(s);
+                }
+            }
+
+            return primes.toString();
         }
         else {
             return "";

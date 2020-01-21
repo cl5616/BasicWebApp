@@ -12,22 +12,18 @@ public class test {
 
   public static void main(String[] args) {
 
-    List<Integer> fib = new ArrayList<>();
 
-    fib.add(0);
-    fib.add(1);
-    int cur = 2;
-    while (cur < 1000) {
-      fib.add(fib.get(cur-1) + fib.get(cur-2));
-      cur += 1;
-    }
+    String URL = "which of the following numbers are primes:389, 6";
 
-    String URL = "what is the 3th number in Fibonacci sequence";
-    Pattern pattern = Pattern.compile("\\d+");
+    List<String> allMatches = new ArrayList<String>();
+
+
+    Pattern pattern = Pattern.compile("(\\d+)");
     Matcher matcher = pattern.matcher(URL);
-    if (matcher.find()) {
-      Integer idx = Integer.parseInt(matcher.group(0));
-      System.out.println(fib.get(idx - 1)); //prints /{item}/
+    while (matcher.find()) {
+      allMatches.add(matcher.group());
     }
+
+    System.out.println(allMatches);
   }
 }
