@@ -29,4 +29,16 @@ public class QueryProcessorTest {
     public void appleTest() throws Exception {
         assertThat(queryProcessor.process("apple"), containsString("apppppple"));
     }
+
+    @Test
+    public void teamNameTest() throws Exception {
+        assertThat(queryProcessor.process("what is your team name"), containsString("lcq"));
+    }
+
+    @Test
+    public void plusTest() throws Exception {
+        assertThat(queryProcessor.process("what is 20 plus 25"), containsString("45"));
+        assertThat(queryProcessor.process("what is 100 plus 200"), containsString("300"));
+
+    }
 }

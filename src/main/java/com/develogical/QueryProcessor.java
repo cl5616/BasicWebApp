@@ -1,5 +1,8 @@
 package com.develogical;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class QueryProcessor {
 
     public String process(String query) {
@@ -14,6 +17,17 @@ public class QueryProcessor {
         else if (query.toLowerCase().contains("what is your team name")) {
             return "lcq";
         }
-        return "";
+        else {
+            Pattern pattern = Pattern.compile("what is (\\d+) plus (\\d+)");
+            Matcher plus_matcher = pattern.matcher(query);
+            if (plus_matcher.find()) {
+                Integer first = Integer.parseInt(plus_matcher.group(1));
+                first += Integer.parseInt(plus_matcher.group(2));
+                return first.toString();
+            }
+            else {
+                return "";
+            }
+        }
     }
 }
