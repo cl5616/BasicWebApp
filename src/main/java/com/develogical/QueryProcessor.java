@@ -1,9 +1,23 @@
 package com.develogical;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class QueryProcessor {
+
+    private final List<Integer> fib = new ArrayList<>();
+
+    public QueryProcessor() {
+        fib.add(0);
+        fib.add(1);
+        int cur = 2;
+        while (cur < 1000) {
+            fib.add(fib.get(cur-1) + fib.get(cur-2));
+            cur += 1;
+        }
+    }
 
     public String process(String query) {
         if (query.toLowerCase().contains("shakespeare")) {
@@ -34,6 +48,14 @@ public class QueryProcessor {
                     first -= second;
                 }
                 return first.toString();
+            }
+        }
+        else if (query.toLowerCase().contains("fibonacci")) {
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher matcher = pattern.matcher(query);
+            if (matcher.find()) {
+                Integer idx = Integer.parseInt(matcher.group(0));
+                return fib.get(idx - 1).toString();
             }
         }
         else {

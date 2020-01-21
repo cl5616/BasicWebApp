@@ -54,4 +54,13 @@ public class QueryProcessorTest {
         assertThat(queryProcessor.process("what is 20 minus 25"), containsString("-5"));
 
     }
+
+    @Test
+    public void fibTest() throws Exception {
+        assertThat(queryProcessor.process("what is the 3th number in Fibonacci sequence"), containsString("1"));
+        assertThat(queryProcessor.process("what is the 5th number in Fibonacci sequence"), containsString("3"));
+        assertThat(queryProcessor.process("what is the 7th number in Fibonacci sequence"), containsString("8"));
+
+
+    }
 }
