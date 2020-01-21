@@ -11,6 +11,9 @@ public class QueryProcessor {
         else if (query.toLowerCase().contains("apple")) {
             return "apppppple";
         }
+        else if (query.toLowerCase().contains("what is your team name")) {
+            return "lcq";
+        }
         return "";
     }
 }
