@@ -10,7 +10,7 @@ public class test {
 
   public static void main(String[] args) {
     String URL = "what is 20 plus 25";
-    Pattern pattern = Pattern.compile("what is (\\d+) plus (\\d+)");
+    Pattern pattern = Pattern.compile("\\w+ (\\d+) \\w+\\s?\\w+ (\\d+)");
     Matcher matcher = pattern.matcher(URL);
     if (matcher.find()) {
       System.out.println(matcher.group(1)); //prints /{item}/

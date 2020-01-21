@@ -17,17 +17,28 @@ public class QueryProcessor {
         else if (query.toLowerCase().contains("what is your team name")) {
             return "lcq";
         }
-        else {
-            Pattern pattern = Pattern.compile("what is (\\d+) plus (\\d+)");
+        else if (query.toLowerCase().contains("plus") || query.toLowerCase().contains("multiplied by")
+            || query.toLowerCase().contains("minus")) {
+            Pattern pattern = Pattern.compile("\\w+ (\\d+) \\w+\\s?\\w+ (\\d+)");
             Matcher plus_matcher = pattern.matcher(query);
             if (plus_matcher.find()) {
                 Integer first = Integer.parseInt(plus_matcher.group(1));
-                first += Integer.parseInt(plus_matcher.group(2));
+                Integer second = Integer.parseInt(plus_matcher.group(2));
+                if (query.toLowerCase().contains("plus")) {
+                    first += second;
+                }
+                else if (query.toLowerCase().contains("multiplied by")) {
+                    first *= second;
+                }
+                else if (query.toLowerCase().contains("minus")) {
+                    first -= second;
+                }
                 return first.toString();
             }
-            else {
-                return "";
-            }
         }
+        else {
+            return "";
+        }
+        return "";
     }
 }
