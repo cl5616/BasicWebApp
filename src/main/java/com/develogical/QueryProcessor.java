@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 public class QueryProcessor {
 
@@ -44,22 +47,36 @@ public class QueryProcessor {
         }
         else if (query.toLowerCase().contains("plus") || query.toLowerCase().contains("multiplied by")
             || query.toLowerCase().contains("minus")) {
-            Pattern pattern = Pattern.compile("\\w+ (\\d+) \\w+\\s?\\w+ (\\d+)");
-            Matcher plus_matcher = pattern.matcher(query);
-            if (plus_matcher.find()) {
-                Integer first = Integer.parseInt(plus_matcher.group(1));
-                Integer second = Integer.parseInt(plus_matcher.group(2));
-                if (query.toLowerCase().contains("plus")) {
-                    first += second;
-                }
-                else if (query.toLowerCase().contains("multiplied by")) {
-                    first *= second;
-                }
-                else if (query.toLowerCase().contains("minus")) {
-                    first -= second;
-                }
-                return first.toString();
+//            Pattern pattern = Pattern.compile("\\w+ (\\d+) \\w+\\s?\\w+ (\\d+)");
+//            Matcher plus_matcher = pattern.matcher(query);
+//            if (plus_matcher.find()) {
+//                Integer first = Integer.parseInt(plus_matcher.group(1));
+//                Integer second = Integer.parseInt(plus_matcher.group(2));
+//                if (query.toLowerCase().contains("plus")) {
+//                    first += second;
+//                }
+//                else if (query.toLowerCase().contains("multiplied by")) {
+//                    first *= second;
+//                }
+//                else if (query.toLowerCase().contains("minus")) {
+//                    first -= second;
+//                }
+//                return first.toString();
+//            }
+
+            query = query.replaceAll("plus", "+");
+            query = query.replaceAll("multiplied by", "*");
+            query = query.replaceAll("minus", "-");
+            query = query.replaceAll("what is", "");
+
+            ScriptEngineManager mgr = new ScriptEngineManager();
+            ScriptEngine engine = mgr.getEngineByName("JavaScript");
+            try {
+                return engine.eval(query).toString();
+            } catch (ScriptException e) {
+                e.printStackTrace();
             }
+
         }
         else if (query.toLowerCase().contains("fibonacci")) {
             Pattern pattern = Pattern.compile("\\d+");
